@@ -24,6 +24,17 @@ Encore
     // only needed for CDN's or sub-directory deploy
     //.setManifestKeyPrefix('build/')
 
+    .addPlugin(new GenerateSW({}))
+    .addPlugin(new PurgeCssPlugin({
+      paths: glob.sync([
+        path.join(__dirname, 'templates/**/*.html.twig')
+      ]),
+      content: ["**/*.twig"],
+      defaultExtractor: (content) => {
+        return content.match(/[\w-/:]+(?<!:)/g) || [];
+      }
+    }))
+
     /*
      * ENTRY CONFIG
      *
@@ -38,6 +49,9 @@ Encore
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
+    .configureSplitChunks(function(splitChunks){
+      splitChunks.chunks = 'async';
+    })
 
     // will require an extra script tag for runtime.js
     // but, you probably want this, unless you're building a single-page app
@@ -56,26 +70,11 @@ Encore
     // enables hashed filenames (e.g. app.abc123.css)
     .enableVersioning(Encore.isProduction())
 
-    .configureBabel((config) => {
-        config.plugins.push('@babel/plugin-proposal-class-properties');
-    })
-
     // enables @babel/preset-env polyfills
     .configureBabelPresetEnv((config) => {
         config.useBuiltIns = 'usage';
         config.corejs = 3;
     })
-
-    .addPlugin(new GenerateSW({}))
-    .addPlugin(new PurgeCssPlugin({
-        paths: glob.sync([
-            path.join(__dirname, 'templates/**/*.html.twig')
-        ]),
-        content: ["**/*.twig"],
-        defaultExtractor: (content) => {
-            return content.match(/[\w-/:]+(?<!:)/g) || [];
-        }
-    }))
 
     // enables Sass/SCSS support
     //.enableSassLoader()
@@ -83,15 +82,16 @@ Encore
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
 
-    // uncomment if you use React
-    //.enableReactPreset()
-
     // uncomment to get integrity="..." attributes on your script & link tags
     // requires WebpackEncoreBundle 1.4 or higher
     //.enableIntegrityHashes(Encore.isProduction())
 
     // uncomment if you're having problems with a jQuery plugin
     //.autoProvidejQuery()
+
+    // uncomment if you use API Platform Admin (composer req api-admin)
+    //.enableReactPreset()
+    //.addEntry('admin', './assets/admin.js')
 ;
 
 module.exports = Encore.getWebpackConfig();
