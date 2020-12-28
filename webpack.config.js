@@ -1,8 +1,12 @@
 let Encore = require('@symfony/webpack-encore');
 
-const PurgeCssPlugin = require('purgecss-webpack-plugin');
+/* Plugin for generation of service worker */
 const {GenerateSW} = require('workbox-webpack-plugin');
 
+/* Plugin used for purge css and avoid large css file */
+const PurgeCssPlugin = require('purgecss-webpack-plugin');
+
+/* Utility */
 const glob = require('glob-all');
 const path = require('path');
 
@@ -48,7 +52,7 @@ Encore
      */
     .cleanupOutputBeforeBuild()
     .enableBuildNotifications()
-    .enableSourceMaps(!Encore.isProduction())
+    //.enableSourceMaps(!Encore.isProduction())
     // enables hashed filenames (e.g. app.abc123.css)
     .enableVersioning(Encore.isProduction())
 
