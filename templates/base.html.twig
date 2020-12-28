@@ -14,7 +14,7 @@
         }
         </script>
 
-        {% block javascript %}
+        {# {% block javascript %}
 
           {% for js in encore_entry_js_files('app') %}
             <script src="{{ asset(js) }}" type="text/javascript" async defer></script>
@@ -30,7 +30,7 @@
             <link type="text/css" href="{{ asset(css) }}" rel="stylesheet">
           {% endfor %}
 
-        {% endblock %}
+        {% endblock %} #}
 
     </head>
     <body>
