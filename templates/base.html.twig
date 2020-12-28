@@ -16,9 +16,9 @@
 
         {% block javascript %}
 
-          {# {% for js in encore_entry_js_files('app') %}
+          {% for js in encore_entry_js_files('app') %}
             <script src="{{ asset(js) }}" type="text/javascript" async defer></script>
-          {% endfor %} #}
+          {% endfor %}
 
         {% endblock %}
 
