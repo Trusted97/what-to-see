@@ -1,5 +1,8 @@
 let Encore = require('@symfony/webpack-encore');
+
 const PurgeCssPlugin = require('purgecss-webpack-plugin');
+const {GenerateSW} = require('workbox-webpack-plugin');
+
 const glob = require('glob-all');
 const path = require('path');
 
@@ -59,6 +62,7 @@ Encore
         config.corejs = 3;
     })
 
+    .addPlugin(new GenerateSW({}))
     .addPlugin(new PurgeCssPlugin({
         paths: glob.sync([
             path.join(__dirname, 'templates/**/*.html.twig')
