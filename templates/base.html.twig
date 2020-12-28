@@ -24,11 +24,11 @@
 
         {% block stylesheets %}
 
-          {# {% for css in encore_entry_css_files('app_css') %}
+          {% for css in encore_entry_css_files('app_css') %}
             <link rel="preload" href="{{ asset(css) }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
             <noscript><link type="text/css" href="{{ asset(css) }}" rel="stylesheet"></noscript>
             <link type="text/css" href="{{ asset(css) }}" rel="stylesheet">
-          {% endfor %} #}
+          {% endfor %}
 
         {% endblock %}
 
