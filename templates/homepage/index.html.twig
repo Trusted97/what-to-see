@@ -3,18 +3,31 @@
 {% block title %}Hello HomepageController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<div>
+    <h1>What to see today?</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/gianlucabenucci/Desktop/symfony-project/what-to-see/src/Controller/HomepageController.php'|file_link(0) }}">src/Controller/HomepageController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/gianlucabenucci/Desktop/symfony-project/what-to-see/templates/homepage/index.html.twig'|file_link(0) }}">templates/homepage/index.html.twig</a></code></li>
-    </ul>
+    <main>
+      <p>
+        There are two steps to go through to find interesting nearby places:
+      </p>
+      <ol>
+        <li id="step1">
+          Detect your current location:
+          <button id="step1-button">
+            Find Me
+          </button>
+          <p id="step1-result"></p>
+        </li>
+        <li id="step2">
+          Given your location, finding nearby places:
+          <button id="step2-button">
+            Find Nearby places
+          </button>
+          <ul id="step2-result"></ul>
+        </li>
+      </ol>
+    </main>
+
 </div>
 {% endblock %}
