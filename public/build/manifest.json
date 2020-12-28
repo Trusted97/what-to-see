@@ -1,0 +1,8 @@
+{
+  "build/app.js": "/build/app.js",
+  "build/app_css.css": "/build/app_css.css",
+  "build/app_css.js": "/build/app_css.js",
+  "build/runtime.js": "/build/runtime.js",
+  "build/service-worker.js": "/build/service-worker.js",
+  "build/workbox-3bf8039c.js": "/build/workbox-3bf8039c.js"
+}
